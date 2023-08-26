@@ -2,11 +2,11 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.12.5
 
-workflows:
-  send-notification:
-    jobs:
-      - notify:
-          context: slack-secrets
+# workflows:
+#   send-notification:
+#     jobs:
+#       - notify:
+#           context: slack-secrets
 
 commands:
   # destroy-environment:
