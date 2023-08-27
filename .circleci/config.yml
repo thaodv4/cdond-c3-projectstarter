@@ -237,6 +237,7 @@ jobs:
           name: Deploy-frontend-objects
           command: |
             # your code here
+            cat frontend/package.json
             cd frontend
             npm install
             npm run build
