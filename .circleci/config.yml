@@ -256,7 +256,7 @@ jobs:
           name: Install dependencies
           command: |
             # install the dependencies needed for your playbook
-            apk add --update tar gzip ansible nodejs npm python3
+            apk add --update tar gzip ansible nodejs npm
             pip3 install awscli
       - attach_workspace:
           at: ~/
