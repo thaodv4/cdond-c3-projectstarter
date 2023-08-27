@@ -1,28 +1,42 @@
 ---
-# - name: "upgrade packages."
-#   become: true
-#   apt:
-#     upgrade: "yes"
+- name: "upgrade packages."
+  become: true
+  apt:
+    upgrade: "yes"
 
-# - name: "install dependencies."
-#   become: true
-#   apt:
-#     name: ["nodejs", "npm"]
-#     state: latest
-#     update_cache: yes
+- name: "install dependencies."
+  become: true
+  apt:
+    name: ["nodejs", "npm"]
+    state: latest
+    update_cache: yes
 
-# - name: "install pm2"
-#   become: true
-#   npm:
-#     name: pm2
-#     global: yes
-#     production: yes
-#     state: present
+- name: "install pm2"
+  become: true
+  npm:
+    name: pm2
+    global: yes
+    production: yes
+    state: present
+
+- name: Create directory
+  become: yes
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
+- name: Copy compressed backend folder
+  become: yes
+  unarchive:
+    src: ~/project/artifact.tar.gz
+    dest: /home/ubuntu/backend
+    owner: ubuntu
 
 - name: "run"
   become: true
   shell:
     cmd: |
       npm install
+      cd /home/ubuntu/backend
       pm2 stop default
       pm2 start npm -- start
