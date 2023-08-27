@@ -222,7 +222,8 @@ jobs:
           name: Install dependencies
           command: |
             # install the dependencies needed for your playbook
-            apk add --update tar gzip ansible python3 nodejs aws-cli
+            apk add --update tar gzip ansible python3 nodejs npm
+            pip3 install awscli
       - run:
           name: Get backend url
           command: |
@@ -258,7 +259,8 @@ jobs:
           name: Install dependencies
           command: |
             # install the dependencies needed for your playbook
-            apk add --update tar gzip ansible nodejs npm
+            apk add --update tar gzip ansible nodejs npm python3
+            pip3 install awscli
       - attach_workspace:
           at: ~/
       - run:
