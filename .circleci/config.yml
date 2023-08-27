@@ -224,6 +224,8 @@ jobs:
             # install the dependencies needed for your playbook
             apk add --update tar gzip ansible python3 nodejs npm
             pip3 install awscli
+      - restore_cache:
+          keys: [frontend-build]
       - run:
           name: Get backend url
           command: |
@@ -232,8 +234,7 @@ jobs:
             echo "API_URL = ${API_URL}"
             echo API_URL="http://${BACKEND_IP}:3030" >> frontend/.env
             cat frontend/.env
-      # - restore_cache:
-      #     keys: [frontend-build]
+
       - run:
           name: Deploy-frontend-objects
           command: |
