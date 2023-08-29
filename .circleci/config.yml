@@ -400,6 +400,7 @@ jobs:
           command: |
             export OldWorkflowID=$(cat .circleci/files/OldWorkflow.txt)
             echo "s3 name ${OldWorkflowID}"
+            echo "new name ${CIRCLE_WORKFLOW_ID:0:7}"
             if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
             then
               aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
